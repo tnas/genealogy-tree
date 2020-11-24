@@ -1,31 +1,47 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <map>
 #include <string>
 
 using namespace std;
 
+void build_family_tree(ifstream* file) 
+{
+   string fileName, line;
+   getline(*file, line);
+   
+   int n_relations = stoi(line);
+   cout << "Number of relations: " << n_relations << endl;
+
+   for (int i = 0; i < n_relations; ++i) 
+   {
+      getline(*file, line);
+      cout << line << endl;
+   }
+}
+
+
+
 int main()
 {
    string fileName, line;
-   int n_relations;
+
    cout << "Enter file name: ";
    cin >> fileName;
    cout << endl;
 
    ifstream relationsFile(fileName);
+   build_family_tree(&relationsFile);
 
-   while (getline(relationsFile, line))
+   getline(relationsFile, line);
+   int n_queries = stoi(line);
+   cout << "Number of relations: " << n_queries << endl;
+
+   for (int i = 0; i < n_queries; ++i) 
    {
-      n_relations = stoi(line);
-      cout << "Number of relations: " << n_relations << endl;
-      
-      for (int i = 0; i < n_relations; ++i) 
-      {
-         getline(relationsFile, line);
-         cout << line << endl;
-      }  
-   }
+      getline(relationsFile, line);
+      cout << line << endl;
+   }  
 
    relationsFile.close();
 }
